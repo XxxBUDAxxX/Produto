@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Text;
 using System.IO;
-using ProdutoV2.utilidades;
-using System.Collections.Generic;
-
 namespace ProdutoV2
 {
     class Program
