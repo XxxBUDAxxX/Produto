@@ -10,7 +10,7 @@ namespace ProdutoV2
             Console.Write("Como serar salvo o Arquivo? ");
             Console.Write("txt ou csv: ");
             string tipo = Console.ReadLine().Trim();
-            Arquivo arquivo = new Arquivo(tipo);
+            Arquivo arquivo = new Arquivo();
             
             arquivo.CriarArquivo();
             arquivo.LerArquivo();

@@ -8,12 +8,25 @@ namespace ProdutoV2.utilidade
     {
         public string Tipo { get; set; }
 
-        public Arquivo(string tipo="txt")
+
+        public Arquivo()
         {
-            Tipo = tipo;
+            Tipo = "txt";
+        }
+
+        public Arquivo(string tipo)
+        {
+            if (tipo == null || tipo != "txt" || tipo != "csv")
+            {
+                Tipo = "txt";
+            }
+            else
+            {
+                Tipo = tipo;
+            }
         }
         
-        private string GerarArquivo()
+        /*private string GerarArquivo()
         {
             
             StreamWriter arquivo;
@@ -24,7 +37,9 @@ namespace ProdutoV2.utilidade
             arquivo = File.CreateText(destino);
             arquivo.Close();
             return "";
-        }
+        }*/
+
+
         
         public string  CriarArquivo()
         {
@@ -52,7 +67,7 @@ namespace ProdutoV2.utilidade
                 arquivo.Close();
               }
             
-            return "Arquivo criado";
+            return "";
         }
 
 
@@ -71,5 +86,12 @@ namespace ProdutoV2.utilidade
             ler.Close();
             return "";
         }
+
+        /*public string SalvarArquivo()
+        {
+
+        }*/
+
+
     }
 }
