@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using ProdutoV2.utilidade;
 
 namespace ProdutoV2.utilidade
 {
@@ -26,18 +27,37 @@ namespace ProdutoV2.utilidade
             }
         }
         
-        /*private string GerarArquivo()
+        public string GerarArquivo()
         {
-            
+            string origem = @"C:\Produto." + Tipo;
+            string[] linhas = File.ReadAllLines(origem);
+            string criar = @"C:\Recibos";
+
+            Directory.CreateDirectory(criar);
+            string destino = @"C:\recibos\Resultado." +  Tipo;
             StreamWriter arquivo;
-            string destino = @"C:\Produto." + Tipo;
-            bool existe = File.Exists(destino);
-            if (existe == true)
-                return "";
-            arquivo = File.CreateText(destino);
+            
+            if (File.Exists(destino) == false)
+            {
+                arquivo = File.AppendText(destino);
+                arquivo.WriteLine($"Produto          Quantidade     Preço      Preço Total");
+            }
+            else
+            {
+                arquivo = File.AppendText(destino);
+            }
+
+            foreach (string iten in linhas)
+            {
+                string[] itens = iten.Split(',');
+                string nome = itens[0];
+                int quant = int.Parse(itens[1]);
+                double preco = double.Parse(itens[2]);
+                arquivo.WriteLine($"{nome}          {quant}     {preco}      {quant*preco}");
+            }
             arquivo.Close();
             return "";
-        }*/
+        }
 
 
         
@@ -87,10 +107,13 @@ namespace ProdutoV2.utilidade
             return "";
         }
 
-        /*public string SalvarArquivo()
+        public string SalvarArquivo(string destino, string tipo)
         {
+            string origem = @"C:\Produto." + Tipo;
 
-        }*/
+
+            return "";
+        }
 
 
     }
