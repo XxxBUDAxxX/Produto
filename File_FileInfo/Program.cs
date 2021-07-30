@@ -7,8 +7,15 @@ namespace ProdutoV2
     {
         static void Main(string[] args)
         {
-            Arquivo ar = new Arquivo();
-            ar.CriarArquivo();
+            Console.Write("Como serar salvo o Arquivo? ");
+            Console.Write("txt ou csv: ");
+            string tipo = Console.ReadLine().Trim();
+            Arquivo arquivo = new Arquivo(tipo);
+            
+            arquivo.CriarArquivo();
+            arquivo.LerArquivo();
+
+
         }
     }
 }

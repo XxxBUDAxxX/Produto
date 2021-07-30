@@ -6,16 +6,32 @@ namespace ProdutoV2.utilidade
 {
     class Arquivo
     {
-        public string CriarArquivo()
-        {
-            try
-            {
-              StreamWriter arquivo;
-              string destino = @"C:\Produto.csv";
-              arquivo = File.CreateText(destino);
-              arquivo.Close();
+        public string Tipo { get; set; }
 
-              char resp = 'S';
+        public Arquivo(string tipo="txt")
+        {
+            Tipo = tipo;
+        }
+        
+        private string GerarArquivo()
+        {
+            
+            StreamWriter arquivo;
+            string destino = @"C:\Produto." + Tipo;
+            bool existe = File.Exists(destino);
+            if (existe == true)
+                return "";
+            arquivo = File.CreateText(destino);
+            arquivo.Close();
+            return "";
+        }
+        
+        public string  CriarArquivo()
+        {
+            StreamWriter arquivo;
+            string destino = @"C:\Produto." + Tipo;
+
+            char resp = 'S';
               while (resp != 'N')
               {
                 Console.Write($"Nome do produto: ");
@@ -35,14 +51,25 @@ namespace ProdutoV2.utilidade
                 }
                 arquivo.Close();
               }
-            }
-            catch (IOException erro)
-            {
-                Console.Write("Erro na criaçao do arquivo: ");
-                Console.WriteLine(erro.Message);
-            }
+            
             return "Arquivo criado";
         }
-        
+
+
+
+        public string LerArquivo()
+        {
+            string destino = @"C:\Produto."+Tipo;
+            StreamReader ler;
+            string caminho = $"{destino}";
+            ler = File.OpenText(caminho);
+            while (ler.EndOfStream != true)
+            {
+                string linha = ler.ReadLine();
+                Console.WriteLine(linha);
+            }
+            ler.Close();
+            return "";
+        }
     }
 }
